@@ -2,88 +2,202 @@
 
 // モンスター
 const monsterName = 'スライム';
-let monsterHP = 20;
+let monsterHP = 10;
+const monsterAP = 8;
 
-// 大山
-const myName = '大山';
+// キャラクター
+const myName = 'ゆうしゃ';
 let myHP = 30;
-let myAP = 5;
+const myMP = 30;
+const myLV = 10;
+const myAP = 5; // 攻撃力
+const myGira = 8; // ギラの攻撃力
 
+
+// キャラクターのつよさを表示
+document.getElementById("myName").textContent = myName;
+document.getElementById("myHP").textContent = myHP;
+document.getElementById("myMP").textContent = myMP;
+document.getElementById("myLV").textContent = myLV;
+
+
+// 起動時コマンド画面とメッセージ画面は非表示
+document.getElementById("command-box").style.visibility = "hidden";
+document.getElementById("message-box").style.visibility = "hidden";
+
+
+// コマンド画面を表示する
+function DisplayCommand() {
+    // メッセージ画面を非表示
+    HiddenMessage();
+
+    // visibleで表示
+    const element = document.getElementById("command-box");
+    element.style.visibility = "visible";
+}
+
+// コマンド画面を非表示にする
+function HiddenCommand() {
+    const element = document.getElementById("command-box");
+    // hiddenで非表示
+    element.style.visibility = "hidden";
+}
+
+
+// メッセージ画面を表示する
+function DisplayMessage() {
+    // コマンド画面を非表示
+    HiddenCommand();
+
+    // メッセージをすべて消去
+    RemoveMessage();
+
+    // visibleで表示
+    const element = document.getElementById("message-box");
+    element.style.visibility = "visible";
+}
+
+// メッセージ画面を非表示にする
+function HiddenMessage() {
+    const element = document.getElementById("message-box");
+    // hiddenで非表示
+    element.style.visibility = "hidden";
+}
 
 
 // メッセージの消去
-function removeMessage() {
-    let removeObj = document.getElementById('message');
+function RemoveMessage() {
+    let removeObj = document.getElementById('message-box');
     while (removeObj.firstChild) {
         removeObj.removeChild(removeObj.firstChild);
     }
 }
 
 
-// 読み込み1秒後に出現メッセージを表示
+// モンスターの出現
+function AppearMonster(monsterName) {
+    DisplayMessage();
+    const e = document.getElementById('message-box');
+    e.appendChild(document.createTextNode(monsterName + 'があらわれた!'));
+}
+
+
+// 攻撃メッセージ
+function AttackMessage() {
+    // メッセージ画面を表示
+    DisplayMessage();
+
+    // 攻撃メッセージの表示
+    let e = document.getElementById('message-box');
+
+    // 1行目と改行
+    e.appendChild(document.createTextNode(myName + 'のこうげき!'));
+    e.appendChild(document.createElement('br'));
+
+    // 1秒後に2行目を表示
+    setTimeout(() => {
+        e.appendChild(document.createTextNode(monsterName + 'に' + myAP + 'ダメージあたえた!'));
+    }, 1000);
+
+}
+
+// じゅもんメッセージ
+function MagicMessage() {
+    // メッセージ画面を表示
+    DisplayMessage();
+
+    // 攻撃メッセージの表示
+    let e = document.getElementById('message-box');
+
+    // 1行目と改行
+    e.appendChild(document.createTextNode(myName + 'は' + 'ギラ' + 'をとなえた!'));
+    e.appendChild(document.createElement('br'));
+
+    // 1秒後に2行目を表示
+    setTimeout(() => {
+        e.appendChild(document.createTextNode(monsterName + 'に' + myGira + 'ダメージあたえた!'));
+    }, 1000);
+
+}
+
+
+// 討伐メッセージ
+function EndMessage() {
+
+    let e = document.getElementById('message-box');
+
+    setTimeout(() => {
+
+        RemoveMessage();
+
+        e.appendChild(document.createTextNode(monsterName + 'をたおした!'));
+
+    }, 2500);
+
+
+}
+
+
+// 世界の平和
+function WorldPeace() {
+    // メッセージ画面を表示
+    DisplayMessage();
+
+    let e = document.getElementById('message-box');
+    e.appendChild(document.createTextNode('世界に 平和が もどったのだ!'));
+
+}
+
+
+// 敵の攻撃
+function monsterAttack() {
+
+    // HPの更新
+    myHP = myHP - monsterAP;
+
+    // メッセージ画面を表示
+    DisplayMessage();
+
+    // 攻撃メッセージの表示
+    let e = document.getElementById('message-box');
+
+    // 1行目と改行
+    e.appendChild(document.createTextNode(monsterName + 'のこうげき!'));
+    e.appendChild(document.createElement('br'));
+
+    // 1秒後に2行目を表示
+    setTimeout(() => {
+        e.appendChild(document.createTextNode(myName + 'に' + monsterAP + 'ダメージあたえた!'));
+    }, 1000);
+}
+
+
+// 読み込みの1秒後に出現メッセージを表示
 window.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(() => {
 
-        let element = document.getElementById('message');
-        let newElement = document.createElement('p');
-        newElement.textContent = monsterName + 'があらわれた!';
 
-        // 指定した要素の中の末尾に挿入
-        element.appendChild(newElement);
+        AppearMonster(monsterName);
+
 
     }, 1000);
 
     // 画面の消去
     setTimeout(() => {
 
-        removeMessage();
+        DisplayCommand();
 
     }, 2000);
-
-
 
 });
 
 
-// 攻撃メッセージの表示
-function AttackMessage() {
-    // 攻撃メッセージの表示
-    let element = document.getElementById('message');
-
-    let message1 = document.createElement('p');
-    message1.textContent = myName + 'のこうげき!';
-    element.appendChild(message1);
-
-    let message2 = document.createElement('p');
-    message2.textContent = monsterName + 'に' + myAP + 'ダメージあたえた!';
-    element.appendChild(message2);
-}
-
-
-// 討伐メッセージの表示
-function EndMessage() {
-    let element = document.getElementById('message');
-    let message = document.createElement('p');
-    message.textContent = monsterName + 'をたおした!';
-    element.appendChild(message);
-}
-
-
-// 世界が平和になるメッセージ
-function WorldPeace() {
-    let element = document.getElementById('message');
-    let message = document.createElement('p');
-    message.textContent = '世界に 平和が もどったのだ!';
-    element.appendChild(message);
-
-}
 
 
 
 
-
-// モンスター画像のクリックで攻撃
+// こうげき
 function Attack() {
     // HPの更新
     monsterHP = monsterHP - myAP;
@@ -92,49 +206,138 @@ function Attack() {
     // 倒した時の処理
     if (monsterHP <= 0) {
 
+        // 攻撃メッセージ
         AttackMessage();
 
-        setTimeout(() => {
-
-            removeMessage();
-
-        }, 1000);
-
         // 討伐メッセージ
+        EndMessage();
+
+        // 世界の平和
         setTimeout(() => {
-
-            EndMessage();
-
-        }, 1000);
-
-        // 画面の消去
-        setTimeout(() => {
-
-            removeMessage();
-
-        }, 2000);
-
-        setTimeout(() => {
-            // 討伐メッセージ
             WorldPeace();
 
-        }, 3000);
+        }, 5000);
 
     }
 
     else {
 
-        // 攻撃メッセージの表示
+        // 攻撃メッセージ
         AttackMessage();
 
-        // 画面の消去
+        // 敵のターン
         setTimeout(() => {
 
-            removeMessage();
+            monsterAttack();
 
-        }, 1000);
+        }, 3000);
+
+        // コマンド画面を表示
+        setTimeout(() => {
+
+            DisplayCommand();
+
+        }, 5000);
 
     }
 
-
 };
+
+
+// じゅもん
+function Magic() {
+
+    // HPの更新
+    monsterHP = monsterHP - myGira;
+    console.log(monsterHP);
+
+    // 倒した時の処理
+    if (monsterHP <= 0) {
+
+        // 攻撃メッセージ
+        MagicMessage();
+
+        // 討伐メッセージ
+        EndMessage();
+
+        // 世界の平和
+        setTimeout(() => {
+            WorldPeace();
+
+        }, 5000);
+
+    }
+
+    else {
+
+        // じゅもんメッセージ
+        MagicMessage();
+
+
+        // コマンド画面を表示
+        setTimeout(() => {
+
+            DisplayCommand();
+
+        }, 2000);
+
+    }
+}
+
+// どうぐ
+function Tool() {
+
+    myHP = myHP + 10;
+    console.log(myHP);
+
+    DisplayMessage();
+
+    // 1行目の表示と改行
+    let e = document.getElementById('message-box');
+    e.appendChild(document.createTextNode('やくそうをつかった!'));
+    e.appendChild(document.createElement('br'));
+
+    // 2行目の表示
+    setTimeout(() => {
+
+        e.appendChild(document.createTextNode(myName + 'の体力は' + '10' + 'ポイント回復した!'));
+
+    }, 1000);
+
+
+    // 画面の消去
+    setTimeout(() => {
+
+        DisplayCommand();
+
+    }, 2500);
+
+
+}
+
+
+// にげる
+function Run() {
+
+    DisplayMessage();
+
+    // 1行目の表示と改行
+    let e = document.getElementById('message-box');
+    e.appendChild(document.createTextNode(myName + 'は逃げ出した!'));
+    e.appendChild(document.createElement('br'));
+
+    // 2行目の表示
+    setTimeout(() => {
+
+        e.appendChild(document.createTextNode('にげられない!'));
+
+    }, 1000);
+
+
+    // 画面の消去
+    setTimeout(() => {
+
+        DisplayCommand();
+
+    }, 2500);
+}
