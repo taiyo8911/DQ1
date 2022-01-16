@@ -12,53 +12,33 @@
 </head>
 
 <body>
-    <div class="container bg-img">
-
-        <div class="character-box">
-            <div class="character">
-                <div class="character-name"><span id="myName"></span></div>
-                <div class="character-hp">H <span id="myHP"></span></div>
-                <div class="character-hp">M <span id="myMP"></span></div>
-                <div class="character-hp">Lv: <span id="myLV"></span></div>
+    <div class="container">
+        <div id="character-box" class="character-box">
+            <div id="character-1" class="character">
+                <div class="character-name"><span id="name-1"></span></div>
+                <div class="">H <span id="HP-1"></span></div>
+                <div class="">M <span id="MP-1"></span></div>
+                <div class="">Lv: <span id="LV-1"></span></div>
             </div>
-            <!-- <div class="character">
-                <div class="character-name">トンヌラ</div>
-                <div class="character-hp">H <span>141</span></div>
-                <div class="character-hp">M <span>101</span></div>
-                <div class="character-hp">Lv: <span>20</span></div>
-            </div>
-            <div class="character">
-                <div class="character-name">アルス</div>
-                <div class="character-hp">H <span>141</span></div>
-                <div class="character-hp">M <span>101</span></div>
-                <div class="character-hp">Lv: <span>20</span></div>
-            </div> -->
         </div>
 
-        <div class="monster-box">
-            <img src="images/slime.png" alt="" id="0">
-            <!-- <img src="images/slime.png" alt="" id="1" onclick="clk()">
-            <img src="images/slime.png" alt="" id="2" onclick="clk()"> -->
-        </div>
+        <div id="monster-box" class="monster-box"></div>
 
         <div id="command-box" class="command-box">
             <div class="command-row">
-                <button onclick="Attack()">こうげき</button>
-                <button onclick="Tool()">どうぐ</button>
+                <button id="Attack" onclick="command()">こうげき</button>
+                <button id="Tool" onclick="command()">どうぐ</button>
             </div>
             <div class="command-row">
-                <button onclick="Magic()">じゅもん</button>
-                <button onclick="Run()">にげる</button>
+                <button id="Magic" onclick="command()">じゅもん</button>
+                <button id="Run" onclick="command()">にげる</button>
             </div>
         </div>
 
-
         <div id="message-box" class="message-box"></div>
-
     </div>
 
-
-    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,16 +1,6 @@
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #111;
-}
-
-.bg-img {
-    background: url(images/bg.png) no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    max-width: 980px;
-    height: 100vh;
 }
 
 .img::before {
@@ -18,7 +8,6 @@ body, html {
     display: block;
     padding-top: 50%;
 }
-
 
 .character-box {
     display: flex;
@@ -41,23 +30,21 @@ body, html {
     border-bottom: 3px solid white;
 }
 
-
 .monster-box {
     display: flex;
     position: relative;
-    top: 13rem;
+    top: 7rem;
     height: max-content;
 }
 
 .monster-box img {
-    max-width: calc(33% - 1px * 2 - 0.25em * 2);
+    max-width: calc(100% - 1px * 2 - 0.25em * 2);
     margin: auto;
-    cursor: pointer;
 }
 
 .command-box {
     position: relative;
-    top: 16rem;
+    top: 8rem;
     height: max-content;
     padding: 9px;
     background-color: #111;
@@ -77,13 +64,13 @@ body, html {
     border-radius: 5px;
     padding: 5px;
     width: 45%;
+    cursor: pointer;
 }
-
 
 .message-box {
     position: relative;
-    top: 10rem;
-    height: 8rem;
+    top: 2rem;
+    height: 6rem;
     padding: 9px;
     color: #fff;
     background-color: #111;
