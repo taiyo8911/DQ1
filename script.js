@@ -66,12 +66,6 @@ function init() {
 
 // 初期画面の描画
 function initDisplay() {
-    // 背景画像の描画
-    document.body.style.background = "url(images/bg.png)";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.height = "100vh";
-
     // キャラクターパラメータを描画
     document.getElementById("name-1").textContent = player.name;
     document.getElementById("HP-1").textContent = player.HP;
@@ -171,7 +165,7 @@ function command() {
                 e.appendChild(document.createTextNode(player.name + ' のこうげき!'));
                 e.appendChild(document.createElement('br'));
                 setTimeout(() => {
-                    e.appendChild(document.createTextNode(monster.name + 'に、' + player.damage + 'ダメージあたえた!'));
+                    e.appendChild(document.createTextNode(monster.name + ' に' + player.damage + 'ダメージあたえた!'));
                 }, 1000);
 
                 // 討伐メッセージ
@@ -195,10 +189,10 @@ function command() {
             else {
                 // 攻撃メッセージ
                 let e = document.getElementById('message-box');
-                e.appendChild(document.createTextNode(player.name + 'の、こうげき!'));
+                e.appendChild(document.createTextNode(player.name + ' のこうげき!'));
                 e.appendChild(document.createElement('br'));
                 setTimeout(() => {
-                    e.appendChild(document.createTextNode(monster.name + 'に、' + player.damage + 'ダメージあたえた!'));
+                    e.appendChild(document.createTextNode(monster.name + ' に' + player.damage + 'ダメージあたえた!'));
                 }, 1000);
 
                 setTimeout(() => {
@@ -227,10 +221,10 @@ function command() {
 
                 // 呪文メッセージ
                 let e = document.getElementById('message-box');
-                e.appendChild(document.createTextNode(player.name + 'は、' + 'ベホイミ' + 'のじゅもんをとなえた!'));
+                e.appendChild(document.createTextNode(player.name + ' は ベホイミのじゅもんをとなえた!'));
                 e.appendChild(document.createElement('br'));
                 setTimeout(() => {
-                    e.appendChild(document.createTextNode(`${player.name}は、${player.heal}ポイントかいふくした!`));
+                    e.appendChild(document.createTextNode(`${player.name}は ${player.heal}ポイントかいふくした!`));
                 }, 1000);
 
                 document.getElementById("HP-1").textContent = player.HP;
@@ -245,7 +239,7 @@ function command() {
             e.appendChild(document.createTextNode('やくそうをつかった!'));
             e.appendChild(document.createElement('br'));
             setTimeout(() => {
-                e.appendChild(document.createTextNode(player.name + 'の体力が、' + '10' + 'ポイント回復した!'));
+                e.appendChild(document.createTextNode(player.name + ' の体力が' + '10' + 'ポイント回復した!'));
             }, 1000);
 
             // HPの更新
@@ -258,7 +252,7 @@ function command() {
         case 'Run':
             // メッセージ
             let x = document.getElementById('message-box');
-            x.appendChild(document.createTextNode(player.name + 'は、逃げ出した!'));
+            x.appendChild(document.createTextNode(player.name + ' は逃げ出した!'));
             x.appendChild(document.createElement('br'));
             setTimeout(() => {
                 x.appendChild(document.createTextNode('にげられない!!'));
@@ -281,10 +275,10 @@ function command() {
         setTimeout(() => {
             DisplayMessage();
             let e = document.getElementById('message-box');
-            e.appendChild(document.createTextNode(monster.name + 'の、こうげき!'));
+            e.appendChild(document.createTextNode(monster.name + ' のこうげき!'));
             e.appendChild(document.createElement('br'));
             setTimeout(() => {
-                e.appendChild(document.createTextNode(player.name + 'は、' + monster.damage + 'ダメージうけた!'));
+                e.appendChild(document.createTextNode(player.name + ' は' + monster.damage + 'ダメージうけた!'));
             }, 1000);
         }, 3000);
     }
@@ -303,10 +297,10 @@ function command() {
         setTimeout(() => {
             DisplayMessage();
             let e = document.getElementById('message-box');
-            e.appendChild(document.createTextNode(monster.name + 'は、ほのおをはいた!'));
+            e.appendChild(document.createTextNode(monster.name + ' はほのおをはいた!'));
             e.appendChild(document.createElement('br'));
             setTimeout(() => {
-                e.appendChild(document.createTextNode(player.name + 'は、' + monster.damage + 'ダメージをうけた!'));
+                e.appendChild(document.createTextNode(player.name + ' は' + monster.damage + 'ダメージをうけた!'));
             }, 1000);
         }, 3000);
     }
