@@ -45,9 +45,6 @@ let monster = {
     damage: "",
 }
 
-// やくそうの回復量
-const yakusou = 10;
-
 
 // 初期化
 function init() {
@@ -224,7 +221,7 @@ function command() {
                 e.appendChild(document.createTextNode(player.name + ' は ベホイミのじゅもんをとなえた!'));
                 e.appendChild(document.createElement('br'));
                 setTimeout(() => {
-                    e.appendChild(document.createTextNode(`${player.name}は ${player.heal}ポイントかいふくした!`));
+                    e.appendChild(document.createTextNode(`${player.name}の体力が ${player.heal}ポイントかいふくした!`));
                 }, 1000);
 
                 document.getElementById("HP-1").textContent = player.HP;
@@ -234,16 +231,25 @@ function command() {
 
         // どうぐ
         case 'Tool':
+            // HPの計算
+            // やくそう回復量 = 23 ~ 30のランダム
+            player.heal = Math.floor(Math.random() * (30 + 1 - 23)) + 23;
+
+            // HPの最大値を超えた場合は回復量を補正
+            if (player.heal + player.HP > player.maxHP) {
+                player.heal = player.maxHP - player.HP;
+            }
+            player.HP += player.heal;
+
             // メッセージ
             let e = document.getElementById('message-box');
             e.appendChild(document.createTextNode('やくそうをつかった!'));
             e.appendChild(document.createElement('br'));
             setTimeout(() => {
-                e.appendChild(document.createTextNode(player.name + ' の体力が' + '10' + 'ポイント回復した!'));
+                e.appendChild(document.createTextNode(`${player.name}の体力が ${player.heal}ポイントかいふくした!`));
             }, 1000);
 
             // HPの更新
-            player.HP += yakusou;
             document.getElementById('HP-1').textContent = player.HP;
 
             break;
